@@ -1,7 +1,12 @@
 package com.audibene.configuration;
 
 import com.audibene.provider.OffsetDateTimeProvider;
-import com.audibene.rest.*;
+import com.audibene.rest.AppointmentResource;
+import com.audibene.rest.ClientAppointmentResource;
+import com.audibene.rest.ClientResource;
+import com.audibene.rest.DoctorAppointmentResource;
+import com.audibene.rest.DoctorClientResource;
+import com.audibene.rest.DoctorResource;
 import com.fasterxml.jackson.jaxrs.base.JsonParseExceptionMapper;
 import org.glassfish.jersey.logging.LoggingFeature;
 import org.glassfish.jersey.server.ResourceConfig;

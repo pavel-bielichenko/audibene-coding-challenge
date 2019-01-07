@@ -2,6 +2,7 @@ apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
 apply plugin: "io.spring.dependency-management"
 apply plugin: 'spring-cloud-contract'
+apply plugin: 'checkstyle'
 
 group 'com.audibene'
 version '1.0.1'
@@ -91,3 +92,11 @@ contracts {
     basePackageForTests = 'accurest'
     generatedTestSourcesDir = file("${project.buildDir}/generated-test-sources/contracts")
 }
+
+checkstyle {
+    toolVersion = checkstyleVersion
+    configFile = rootProject.file('checkstyle.xml')
+}
+
+// Avoid running checkstyle on generated sources
+checkstyleTest.source = "src/test/java"

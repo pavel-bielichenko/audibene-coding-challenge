@@ -1,0 +1,23 @@
+server:
+  port: 8411
+
+spring:
+  liquibase:
+    change-log: classpath:liquibase/db.changelog.xml
+    liquibase-schema: public
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+
+  jersey:
+    type: filter
+#  datasource:
+#    url:
+#    password:
+#    username:
+
+logging:
+  level:
+    com.idealo: DEBUG
