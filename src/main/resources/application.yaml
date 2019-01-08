@@ -2,22 +2,22 @@ server:
   port: 8411
 
 spring:
-  liquibase:
-    change-log: classpath:liquibase/db.changelog.xml
-    liquibase-schema: public
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
     hibernate:
       ddl-auto: none
-
+    properties:
+      hibernate.temp.use_jdbc_metadata_defaults: false
   jersey:
     type: filter
-#  datasource:
-#    url:
-#    password:
-#    username:
-
+  datasource:
+    url: "jdbc:postgresql://localhost:5432/audibene"
+    username: "audibene_app"
+    password:
+  liquibase:
+    change-log: classpath:liquibase/db.changelog.xml
+    liquibase-schema: public
 logging:
   level:
     com.idealo: DEBUG

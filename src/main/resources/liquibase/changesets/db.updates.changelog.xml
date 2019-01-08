@@ -8,9 +8,42 @@
             http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
         "
 >
+
+    <changeSet id="changelog_create_doctors_sequence" author="pavlo.bielichenko">
+        <createSequence schemaName="public"
+                        sequenceName="doctors_seq"
+                        startValue="1"/>
+    </changeSet>
+
+
+    <changeSet id="changelog_create_doctors_table" author="pavlo.bielichenko">
+        <createTable tableName="doctors">
+            <column name="id" type="INT">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="changelog_create_clients_sequence" author="pavlo.bielichenko">
+        <createSequence schemaName="public"
+                        sequenceName="clients_seq"
+                        startValue="1"/>
+    </changeSet>
+
+    <changeSet id="changelog_create_clients_table" author="pavlo.bielichenko">
+        <createTable tableName="clients">
+            <column name="id" type="INT">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
     <changeSet id="changelog_create_appointments_sequence" author="pavlo.bielichenko">
-        <createSequence ordered="true"
-                        schemaName="public"
+        <createSequence schemaName="public"
                         sequenceName="appointments_seq"
                         startValue="1"/>
     </changeSet>
@@ -34,48 +67,13 @@
                         deleteCascade="true"
                 />
             </column>
-            <column name="startsAt" type="timestamp with time zone">
+            <column name="starts_at" type="timestamp">
                 <constraints nullable="false"/>
             </column>
-            <column name="endsAt" type="timestamp with time zone">
+            <column name="ends_at" type="timestamp">
                 <constraints nullable="false"/>
             </column>
             <column name="rating" type="varchar(255)" defaultValue="none"/>
-        </createTable>
-    </changeSet>
-
-    <changeSet id="changelog_create_doctors_sequence" author="pavlo.bielichenko">
-        <createSequence ordered="true"
-                        schemaName="public"
-                        sequenceName="doctors_seq"
-                        startValue="1"/>
-    </changeSet>
-
-
-    <changeSet id="changelog_create_doctors_table" author="pavlo.bielichenko">
-        <createTable tableName="doctors">
-            <column name="id" type="INT">
-                <constraints primaryKey="true" nullable="false" autoIncrement="clients_seq"/>
-            </column>
-            <column name="name" type="varchar(255)"/>
-        </createTable>
-    </changeSet>
-
-    <changeSet id="changelog_create_clients_sequence" author="pavlo.bielichenko">
-        <createSequence ordered="true"
-                        schemaName="public"
-                        sequenceName="clients_seq"
-                        startValue="1"/>
-    </changeSet>
-
-    <changeSet id="changelog_create_clients_table" author="pavlo.bielichenko">
-        <createTable tableName="clients">
-            <column name="id" type="INT">
-                <constraints primaryKey="true" nullable="false" autoIncrement="clients_seq"/>
-            </column>
-            <column name="name" type="varchar(255)">
-                <constraints nullable="false"/>
-            </column>
         </createTable>
     </changeSet>
 
