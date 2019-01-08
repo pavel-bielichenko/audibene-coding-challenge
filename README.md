@@ -14,7 +14,7 @@ ________________________________________________________________________________
 ./gradlew bootRun
 ```
 
-**Please make sure that you define datasource properties befor run app:**
+**Please make sure that you define datasource properties before run app:**
 I am using postgresql
 you can use your configuration ;) 
 ```
