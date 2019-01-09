@@ -67,10 +67,10 @@
                         deleteCascade="true"
                 />
             </column>
-            <column name="starts_at" type="timestamp">
+            <column name="starts_at" type="timestamp with time zone">
                 <constraints nullable="false"/>
             </column>
-            <column name="ends_at" type="timestamp">
+            <column name="ends_at" type="timestamp with time zone">
                 <constraints nullable="false"/>
             </column>
             <column name="rating" type="varchar(255)" defaultValue="none"/>

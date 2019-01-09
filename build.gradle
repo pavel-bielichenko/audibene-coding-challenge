@@ -61,6 +61,7 @@ dependencies {
     testCompile "org.springframework.boot:spring-boot-starter-test"
     testCompile 'org.hamcrest:hamcrest-all:1.3'
     testCompile group: 'org.mockito', name: 'mockito-all', version: '1.10.19'
+    testCompile 'ru.yandex.qatools.embed:postgresql-embedded:2.10'
 }
 
 // Database
@@ -72,7 +73,6 @@ dependencies {
     compile "org.hibernate:hibernate-entitymanager:$hibernateVersion"
     compile "org.hibernate:hibernate-validator:6.0.7.Final"
 
-    runtime "com.h2database:h2:$h2Version"
     compile "org.postgresql:postgresql:$postgresqlVersion"
 }
 dependencies {

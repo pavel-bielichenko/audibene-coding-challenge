@@ -12,9 +12,13 @@ spring:
   jersey:
     type: filter
   datasource:
-    url: "jdbc:postgresql://localhost:5432/audibene"
-    username: "audibene_app"
+    url: jdbc:postgresql://localhost:5432/audibene
+    username: audibene_app
     password:
+    hikari:
+      connection-test-query: SELECT 1
+      minimum-idle: 1
+      maximum-pool-size: 10
   liquibase:
     change-log: classpath:liquibase/db.changelog.xml
     liquibase-schema: public
