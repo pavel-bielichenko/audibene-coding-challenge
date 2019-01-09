@@ -5,7 +5,26 @@ ________________________________________________________________________________
 ```
 ./gradlew clean build --info
 ```
------------------------------------------------------------------------------------------------------------------------------
+
+For test I am using H2 db
+
+____________________________________________________________________________________________________________________________
+**How to run application?**
+```
+./gradlew bootRun
+```
+
+**Please make sure that you define datasource properties before run app:**
+I am using postgresql
+you can use your configuration ;) 
+```
+datasource:
+    url: "jdbc:postgresql://localhost:5432/audibene"
+    username: "audibene_app"
+    password:
+```
+
+----------------------------------------------------------------------------------------------------------------------------
 **Project setup**
 
 Enable annotation processing -> https://www.jetbrains.com/help/idea/configuring-annotation-processing.html 
@@ -20,7 +39,7 @@ Customer - Client
 
 **Challenge solution description:**
 
-In order to not overcomplicate it base Entities are quite simple. I didn't add entity version, active field to client entity, auditing to my solution cause it will make implementation more complex. But I think it make sense to have them.
+In order to not overcomplicate it base Entities are quite simple. I didn't add entity version, active field to client entity or auditing, cause it will make implementation more complex. But I think it make sense to have them.
 Doctor has: id and name.
 Client has: id and name.
 Appointment has: id, clientId, doctorId, startsAt, endsAt, rating.
@@ -44,7 +63,9 @@ I like Spring Cloud contract tests, cause they salfe explained, kind of document
                 name: "Bruce Wayne"
         ])
     }
-     ---------------------------------------------------------
+    
+```curl -i -X POST -H "Content-Type:application/json" http://localhost:8411/api/v1/clients -d '{"name":"Bruce"}```
+
  2) **as an audiologist I want to create appointments with a customer:**
   - ```request {
         method "POST"
@@ -59,6 +80,7 @@ I like Spring Cloud contract tests, cause they salfe explained, kind of document
                 endsAt  : "$dateTime"
         ])
     }
+``` curl -i -X POST -H "Content-Type:application/json" http://localhost:8411/api/v1/appointments -d '{"clientId": "1","doctorId": "1","startsAt": "$dateTime","endsAt"  : "$dateTime"}```
  
  3) **as an audiologist I want to get a list of all appointments and their ratings:**
  - ```request {
@@ -68,7 +90,8 @@ I like Spring Cloud contract tests, cause they salfe explained, kind of document
             contentType('application/json')
         }
     }
- 
+```curl --header "Accept:application/json" http://localhost:8411/api/v1/appointments```
+
  4) **as an audiologist I want to get a list of the next week’s appointments:**
  - ```request {
         method "GET"
@@ -82,6 +105,8 @@ I like Spring Cloud contract tests, cause they salfe explained, kind of document
             contentType('application/json')
         }
     }
+    
+ ```curl --header "Accept:application/json" http://localhost:8411/api/v1/doctors/1/appointments```
  
  5) **as a customer I want to get the next appointment:**
  - ``` request {
@@ -91,6 +116,8 @@ I like Spring Cloud contract tests, cause they salfe explained, kind of document
             contentType('application/json')
         }
     }
+    
+```curl --header "Accept:application/json" http://localhost:8411/api/v1/clients/1/appointments/next```
  
  6) **as a customer I want to rate the last appointment:**
  - ```   request {
@@ -103,7 +130,7 @@ I like Spring Cloud contract tests, cause they salfe explained, kind of document
                 rating: "FIVE"
         ])
     }
-    
+```curl -i -X PUT -H "Content-Type:application/json" http://localhost:8888/demo-rest-jersey-spring/podcasts/2 -d '{"rating":"FIVE"}```  
     
     
     **Minuses** application doesn't has any validation
