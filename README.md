@@ -6,7 +6,8 @@ ________________________________________________________________________________
 ./gradlew clean build --info
 ```
 
-For test I am using H2 db
+I decided to use embedded Postgres for testing, it's a bit slow down tests execution, even after I cached db config, but I like the idea to use "real" db for testing, because we can be closer to prod env and the H2 database supports a limited subset of the PostgreSQL SQL dialect...
+https://github.com/yandex-qatools/postgresql-embedded
 
 ____________________________________________________________________________________________________________________________
 **How to run application?**
@@ -64,7 +65,7 @@ I like Spring Cloud contract tests, cause they salfe explained, kind of document
         ])
     }
     
-```curl -i -X POST -H "Content-Type:application/json" http://localhost:8411/api/v1/clients -d '{"name":"Bruce"}```
+```curl -i -X POST -H "Content-Type:application/json" http://localhost:8411/api/v1/clients -d '{"name":"Bruce"}'```
 
  2) **as an audiologist I want to create appointments with a customer:**
   - ```request {
@@ -80,7 +81,7 @@ I like Spring Cloud contract tests, cause they salfe explained, kind of document
                 endsAt  : "$dateTime"
         ])
     }
-``` curl -i -X POST -H "Content-Type:application/json" http://localhost:8411/api/v1/appointments -d '{"clientId": "1","doctorId": "1","startsAt": "$dateTime","endsAt"  : "$dateTime"}```
+``` curl -i -X POST -H "Content-Type:application/json" http://localhost:8411/api/v1/appointments -d '{"clientId": "1","doctorId": "1","startsAt": "$dateTime","endsAt"  : "$dateTime"}'```
  
  3) **as an audiologist I want to get a list of all appointments and their ratings:**
  - ```request {
@@ -130,7 +131,7 @@ I like Spring Cloud contract tests, cause they salfe explained, kind of document
                 rating: "FIVE"
         ])
     }
-```curl -i -X PUT -H "Content-Type:application/json" http://localhost:8888/demo-rest-jersey-spring/podcasts/2 -d '{"rating":"FIVE"}```  
+```curl -i -X PUT -H "Content-Type:application/json" http://localhost:8888/demo-rest-jersey-spring/podcasts/2 -d '{"rating":"FIVE"}'```  
     
     
     **Minuses** application doesn't has any validation
